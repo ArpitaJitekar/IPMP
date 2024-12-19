@@ -1,0 +1,17 @@
+ vector<int> findUnion(vector<int> &a, vector<int> &b) {
+        set<int>c;
+        vector<int>p;
+        for(auto i:a){
+            c.insert(i);
+        }
+        for(auto j:b){
+            c.insert(j);
+        }
+        int j=0;
+        for(auto i:c){
+            p[j]=i;
+            j++;
+        }
+        return p;
+    }
+};
