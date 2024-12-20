@@ -1,0 +1,22 @@
+class Solution {
+  public:
+    // Function to sort the array using bubble sort algorithm.
+    void bubbleSort(vector<int>& arr) {
+     int f;
+     for(int p=1;p<arr.size();p++){
+            f=0;
+         for(int j=0;j<=arr.size()-p-1;j++){
+          
+             if(arr[j]>arr[j+1]){
+                 int t=arr[j];
+                 arr[j]=arr[j+1];
+                 arr[j+1]=t;
+                 f=1;
+             }
+         }
+         if(f==0){
+             break;
+         }
+     }
+    }
+};
