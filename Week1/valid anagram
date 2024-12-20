@@ -1,0 +1,19 @@
+
+bool isAnagram(char* s, char* t) {
+    if(strlen(s)!=strlen(t)){
+        return false;
+    }
+    int i;
+    int b[256]={0};
+    for(i=0;s[i]!='\0';i++){
+        b[(unsigned char)s[i]]++;
+    }
+     for(i=0;t[i]!='\0';i++){
+        b[(unsigned char)t[i]]--;
+    }
+    for(i=0;i<255;i++){
+        if(b[i]!=0)
+        return false;
+    }
+    return true;
+}
