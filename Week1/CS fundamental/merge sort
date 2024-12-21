@@ -33,7 +33,7 @@ void mergeSort(vector<int>& arr, int l, int r) {
             k++;
             i++;
         }
-        for( i=0;i<=r;i++){
+        for( i=l;i<=r;i++){
             arr[i]=b[i];
         }
         
