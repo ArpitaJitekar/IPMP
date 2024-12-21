@@ -1,0 +1,14 @@
+int majorityElement(int* nums, int numsSize) {
+    int i,j,majority;
+     int *hash_map = (int *)calloc(2000000001, sizeof(int));
+    int offset = 1000000000;
+    for(i=0;i<numsSize;i++){
+       hash_map[nums[i]+offset]++;
+       if (hash_map[nums[i] + offset] > numsSize / 2) {
+            majority = nums[i];
+            break;
+        }
+        }
+    
+    return majority;
+}
