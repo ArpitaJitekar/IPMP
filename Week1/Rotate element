@@ -1,0 +1,32 @@
+void rotate(int* nums, int numsSize, int k) {
+ int t,s,e,i;
+  k=k%numsSize;
+s=0;
+e=numsSize-1;
+while(s<e){
+ t=nums[s];
+    nums[s]=nums[e];
+    nums[e]=t;
+    s++;
+    e--;
+}
+s=0;
+e=k-1;
+while(s<e){
+ t=nums[s];
+    nums[s]=nums[e];
+    nums[e]=t;
+    s++;
+    e--;
+}
+s=k;
+e=numsSize-1;
+while(s<e){
+ t=nums[s];
+    nums[s]=nums[e];
+    nums[e]=t;
+    s++;
+    e--;
+}
+ 
+}
