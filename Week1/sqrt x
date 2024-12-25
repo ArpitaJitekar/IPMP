@@ -1,0 +1,15 @@
+int mySqrt(int x) {
+    long int i=1;
+    while(true){
+        if(i*i==x){
+            return i;
+        }
+        else if(i*i>x){
+            return i-1;
+        }
+        else{
+            i++;
+        }
+    }
+    return -1;
+}
