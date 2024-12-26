@@ -1,0 +1,19 @@
+//if range exceeds insted of int one can use long long int and typecast mid to it.
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        int s=0,e=n,res=0,mid;
+        while(s<=e){
+            mid=s+(e-s)/2;
+           long long int r=static_cast<long long>(mid)*(mid+1)/2;
+            if(r>n)
+            e=mid-1;
+            
+            else{
+            res=max(mid,res);
+            s=mid+1;
+            }
+        }
+        return res;
+    }
+};
