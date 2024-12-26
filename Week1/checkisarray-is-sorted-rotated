@@ -1,26 +1,17 @@
-
 bool check(int* nums, int numsSize) {
-  int  max,min;
-  max=min=nums[0] ;
-  for(int i=0;i<numsSize;i++){
-    if(nums[i]>max)
-    max=nums[i];
-    else if(nums[i]<min)
-    min=nums[i];
-  }
-  for(int i=0;i<numsSize-1;i++){
-    if(nums[i]>nums[i+1]){
-        if(nums[i]==max &&nums[i+1]==min){
-           continue;
+    int i,count=0;
+    for(i=0;i<numsSize;i++){
+        if(nums[i]>nums[(i+1)%numsSize]){
+            count++;
         }
-        
-        else{
-            return false;
-        }
+    }
+    return count<=1;
+}
+
        
         
         
-    }
+    
     
   }
   return true;
