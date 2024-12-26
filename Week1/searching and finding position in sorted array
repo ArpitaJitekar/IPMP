@@ -1,0 +1,26 @@
+//if elemnt is not prsent s will give position of element wher it can be inserted and numsSize ==1 is small case so for decresing time complexity using condition statement is beneficial.
+int searchInsert(int* nums, int numsSize, int target) {
+    int s=0,e=numsSize-1,mid;
+    if(numsSize==1){
+        if(target>nums[0])
+        return 1;
+        return 0;
+    }
+    while(s<=e){
+        mid=s+(e-s)/2;
+        if(nums[mid]==target)
+        return mid;
+        else if(nums[mid]>target)
+        e=mid-1;
+        else
+        s=mid+1;
+        if(s==e){
+            if(target>nums[s])
+            return s+1;
+            else 
+            return s;
+        }
+        
+    }
+    return s;
+}
