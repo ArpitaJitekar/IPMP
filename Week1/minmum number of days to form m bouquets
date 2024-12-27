@@ -1,0 +1,28 @@
+//time limit exceeded for this problem
+class Solution {
+public:
+    int minDays(vector<int>& bloomDay, int m, int k) {
+int max=*max_element(bloomDay.begin(),bloomDay.end());// max_elemnt is in uilt function to find maximum in array
+for(int i=0;i<=max;i++){
+    if(ispossible(bloomDay,k,m,i))
+    return i;
+}
+return -1;
+    }
+public:bool ispossible(vector<int>& bloomDay,int k,int m,int day){
+    int n=0,c=0;
+    for(int i=0;i<bloomDay.size();i++){
+        if(bloomDay[i]<=day){
+            c++;
+        }
+        else{
+            n+=c/k;
+            c=0;
+        }
+    }
+    n+=c/k;
+    return n>=m;
+}
+};
+//optimal solution
+
