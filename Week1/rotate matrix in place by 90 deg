@@ -1,0 +1,21 @@
+//for rotation of square matrix if we take its transpose andeverse every row then given matrix will be solution
+  class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int r=matrix.size();
+        int c=matrix[0].size();
+       for(int i=0;i<r;i++) {
+        for(int j=0;j<c;j++){
+            if(i<j){
+                int t=matrix[i][j];
+                matrix[i][j]=matrix[j][i];
+                matrix[j][i]=t;
+            }
+        }
+       }
+       for(int i=0;i<r;i++){
+        reverse(matrix[i].begin(),matrix[i].end());
+       }
+
+    }
+};
