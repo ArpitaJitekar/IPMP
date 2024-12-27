@@ -1,0 +1,21 @@
+// k is index of minimum number
+int findKRotation(vector<int> &arr) {
+       int l_index=minindex(arr) ;
+       return l_index;
+    }
+  public:int minindex(vector<int> &arr){
+      int l=0,h=arr.size()-1,mid;
+      while(l<h){
+          if(arr[l]<arr[h]){
+              return l;
+          }
+          mid=l+(h-l)/2;
+          if(arr[mid]>arr[h]){
+              l=mid+1;
+          }
+          else{
+              h=mid;
+          }
+      }
+      return l;
+  }
