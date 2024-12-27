@@ -1,0 +1,20 @@
+//if arr[low]<arr[high] then in that section of sorted array arr[low] is least and if not find if righthalf is sorted if so search in lethalf else in righthalf as not sortedarray will be having least
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int l=0,h=nums.size()-1,mid;
+        while(l<h){
+            if(nums[l]<nums[h]){
+                return nums[l];
+            }
+            mid=l+(h-l)/2;
+            if(nums[mid]>nums[h]){
+                l=mid+1;
+            }
+            else{
+                h=mid;
+            }
+        }
+        return nums[l];
+    }
+};
