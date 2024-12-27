@@ -1,0 +1,47 @@
+//recurssion solution ut instead if we add array as in recurssionsome solutions may be calculated twiceso use dp for it
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+      int r=util(prices,0,0)  ;
+      return r;
+    }
+public:int util(vector<int> &prices,int i,int f){
+    if(i==prices.size()){
+        return 0;
+    }
+    if(f==0){
+        int r1=max(0+util(prices,i+1,0),-prices[i]+util(prices,i+1,1));
+        return r1;
+    }
+    else{
+int r1=max(0+util(prices,i+1,1),prices[i]+util(prices,i+1,0));
+        return r1;
+    }
+}
+};
+
+//with dynamic programming(just add dp matrix such that it will store result and if result is present return it else calculateit)
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        vector<vector<int>>dp(prices.size(),vector<int>(2, -1)) ;
+      int r=util(prices,0,0,dp)  ;
+      return r;
+    }
+public:int util(vector<int> &prices,int i,int f,vector<vector<int>>&dp){
+    if(i==prices.size()){
+        return 0;
+    }
+    if(dp[i][f]!=-1)
+    return dp[i][f];
+    int r1;
+    if(f==0){
+        r1=max(0+util(prices,i+1,0,dp),-prices[i]+util(prices,i+1,1,dp));
+     
+    }
+    else{
+r1=max(0+util(prices,i+1,1,dp),prices[i]+util(prices,i+1,0,dp));
+    }
+    return dp[i][f]=r1;
+}
+};
