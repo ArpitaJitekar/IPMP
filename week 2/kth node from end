@@ -1,0 +1,25 @@
+//kth node from end is tital node-k+1 th node from beginning
+class Solution {
+  public:
+    int getKthFromLast(Node *head, int k) {
+        int c=getn(head);
+        if(k>c)
+        return -1;
+        int p=c-k+1;
+        Node *ptr=head;
+        while(p!=1){
+            p--;
+            ptr=ptr->next;
+        }
+        return ptr->data;
+    }
+    public:int getn(Node *head){
+        Node *ptr=head;
+        int c=0;
+        while(ptr!=NULL){
+            c++;
+            ptr=ptr->next;
+        }
+        return c;
+    }
+};
