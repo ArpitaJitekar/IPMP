@@ -1,0 +1,21 @@
+//start construction from behind and update head
+class Solution {
+  public:
+    Node* constructDLL(vector<int>& arr) {
+        Node *head=NULL;
+        Node *ptr;
+        int i;
+        for(i=arr.size()-1;i>=0;i--){
+            ptr=new Node(arr[i]);
+            if(head==NULL){
+                head=ptr;
+            }
+            else{
+                ptr->next=head;
+                head->prev=ptr;
+                head=ptr;
+            }
+        }
+        return head;
+    }
+};
