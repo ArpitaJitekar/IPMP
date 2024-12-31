@@ -1,0 +1,30 @@
+//find inorder traversal and find sum
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+ void inorder(struct TreeNode *root,int *a,int *i){
+    if(root==NULL)
+    return;
+    inorder(root->left,a,i);
+    a[*i]=root->val;
+    (*i)++;
+    inorder(root->right,a,i);
+
+
+ }
+int rangeSumBST(struct TreeNode* root, int low, int high) {
+    int i=0,sum=0;
+    int a[20001];
+    inorder(root,a,&i);
+    for(int j=0;j<=i-1;j++){
+        if(a[j]>=low &&a[j]<=high){
+            sum=sum+a[j];
+        }
+    }
+    return sum;
+}
