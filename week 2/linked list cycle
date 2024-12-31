@@ -1,0 +1,12 @@
+
+bool hasCycle(struct ListNode *head) {
+    struct ListNode *sptr,*fptr;
+    sptr=fptr=head;
+    while(sptr && fptr && fptr->next){
+        sptr=sptr->next;
+        fptr=fptr->next->next;
+        if(sptr==fptr)
+        return true;
+    }
+    return false;
+}
