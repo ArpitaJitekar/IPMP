@@ -1,0 +1,68 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+ struct stack{
+	int top;
+	int c;
+	struct TreeNode *a[300];
+};
+struct stack* create(int cap){
+	struct stack *stack;
+	stack=(struct stack *)malloc(sizeof(struct stack));
+	stack->c=cap;
+	stack->top=-1;
+	return stack;
+}
+int isFull(struct stack *stack){
+	return stack->top==stack->c-1;	
+}
+int isEmpty(struct stack *stack){
+return	stack->top==-1;
+}
+void push(struct stack *stack,struct TreeNode* n){
+	if(isFull(stack)){
+		return;
+	}
+	stack->top=stack->top+1;
+	stack->a[stack->top]=n;
+	
+}
+struct TreeNode * pop(struct stack*stack){
+	if(isEmpty(stack)){
+		return NULL;
+	}
+	
+		struct TreeNode* b=stack->a[stack->top];
+		stack->top=stack->top-1;
+		return b;
+	}
+
+int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+struct stack *s=create(300);
+int i=0;
+int *arr=(int *)malloc(300*sizeof(int));
+while(1){
+while(root){
+arr[i]=root->val;
+i++;
+push(s,root);
+root=root->left;
+}
+if(isEmpty(s)){
+*returnSize=i;
+return arr;
+}
+root=pop(s);
+root=root->right;   
+}
+*returnSize=i;
+return arr;
+}
