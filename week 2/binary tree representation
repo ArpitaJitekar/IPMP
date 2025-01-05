@@ -1,0 +1,24 @@
+class Solution{
+public:
+
+    void create_tree(node* root0, vector<int> &vec){
+        //Your code goes here
+       help(root0,vec,0);
+    }
+public:void help(node *root,vector<int>&a,int i){
+    if(i>=a.size() ||root==NULL)
+    return ;
+    root->data=a[i];
+    int l=2*i+1;
+    int r=2*i+2;
+    if(l<a.size()){
+        root->left=newNode(a[l]);
+        help(root->left,a,l);
+    }
+    if(r<a.size()){
+        root->right=newNode(a[r]);
+        help(root->right,a,r);
+    }
+}
+
+};
