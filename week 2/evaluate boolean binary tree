@@ -1,0 +1,29 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+bool evaluateTree(struct TreeNode* root) {
+    if(root==NULL)
+    return true;
+    else if(root->right==NULL &&root->left==NULL)
+    {
+      return  root->val==0?false:true;
+    }
+    bool vall=evaluateTree(root->left);
+    bool valr=evaluateTree(root->right);
+    int v1=vall==true?1:0;
+    int v2=valr==true?1:0;
+    int r;
+    switch(root->val)
+    {
+        case 2:r=v1||v2;
+            break;
+        case 3:r=v1&&v2;
+            break;
+    }
+    return r==0?false:true;
+}
