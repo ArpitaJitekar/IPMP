@@ -1,0 +1,46 @@
+
+class Solution {
+  public:
+    // Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head) {
+        struct Node *sptr=head,*fptr=head,*prev=NULL,*ptr=head;
+        if(head==NULL || head->next ==NULL){
+            return true;
+        }
+        while(fptr && fptr->next){
+            prev=sptr;
+            sptr=sptr->next;
+            fptr=fptr->next->next;
+        }
+        if(fptr && fptr->next==NULL){
+            prev=sptr;
+            sptr=sptr->next;
+        }
+        struct Node *ptr1=reverse(sptr);
+        if(prev)
+        prev->next=NULL;
+        while(ptr && ptr1){
+            if(ptr->data!=ptr1->data)
+            return false;
+            ptr=ptr->next;
+            ptr1=ptr1->next;
+        }
+        return true;
+        
+        
+    }
+public: struct Node * reverse(struct Node *head){
+    struct Node *a[50000],*ptr=head;
+    int i=0;
+    while(ptr!=NULL){
+        a[i++]=ptr;
+        ptr=ptr->next;
+    }
+    for(int j=i-1;j>0;j--){
+        a[j]->next=a[j-1];
+    }
+    a[0]->next=NULL;
+    return a[i-1];
+    
+}
+};
