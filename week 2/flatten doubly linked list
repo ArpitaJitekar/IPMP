@@ -1,0 +1,42 @@
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    Node* prev;
+    Node* next;
+    Node* child;
+};
+*/
+
+class Solution {
+public:
+    Node* flatten(Node* head) {
+       if(!head)
+       return NULL;
+       Node *tail=flat(head);
+       return head;
+    }
+    public: Node* flat(Node* head){
+         Node *curr=head,*tail=head;
+        while(curr){
+            Node *child=curr->child;
+            Node *next=curr->next;
+            if(child){
+                Node *t1=flat(child);
+                curr->next=child;
+                child->prev=curr;
+                t1->next=next;
+                if(next)next->prev=t1;
+                curr->child=NULL;
+                curr=tail;
+            }
+            else{
+                curr=next;
+            }
+            if(curr)tail=curr;
+       
+        }
+        return tail;
+    }
+};
