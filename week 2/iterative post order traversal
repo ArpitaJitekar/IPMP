@@ -1,0 +1,28 @@
+//using two stacks
+class Solution{
+    public:
+    vector<int> postOrder(Node* node) {
+        stack<struct Node*>st1,st2;
+        struct Node * ptr=NULL;
+        vector<int>a;
+        if(node ==NULL)
+        return a;
+         st1.push(node);
+        while(!st1.empty()){
+            ptr=st1.top();
+            st1.pop();
+            st2.push(ptr);
+            if(ptr->left){
+                st1.push(ptr->left);
+            }
+            if(ptr->right){
+                st1.push(ptr->right);
+            }
+        }
+        while(!st2.empty()){
+            a.push_back(st2.top()->data);
+            st2.pop();
+        }
+        return a;
+    }
+};
