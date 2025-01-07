@@ -1,0 +1,19 @@
+class Solution {
+  public:
+    vector<vector<int>> Paths(Node* root) {
+        vector<vector<int>>a;
+        vector<int>b;
+        helper(root,a,b);
+        return a;
+    }
+    public:void helper(Node *root,vector<vector<int>>&a,vector<int>&b){
+        if(!root)
+        return;
+        b.push_back(root->data);
+        if(root->left==NULL && root->right==NULL)
+        a.push_back(b);
+        helper(root->left,a,b);
+        helper(root->right,a,b);
+        b.erase(b.end()-1);
+    }
+};
