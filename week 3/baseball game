@@ -1,0 +1,40 @@
+//for checking i that string is number consider negative sign also
+class Solution {
+public:
+    int calPoints(vector<string>& operations) {
+        int f=0;
+        vector<int>a;
+        for(auto op:operations){
+           if(isnumber(op)){
+            int n=stoi(op);
+            a.push_back(n);
+            f=f+n;
+           }
+           else if(op=="C"){
+           f=f-a.back();
+           a.pop_back();
+           }
+           else if(op=="D"){
+            int p=2*a.back();
+             a.push_back(p);
+            f=f+p;
+           }
+           else if(op=="+"){
+            if(a.size()>=2){
+            int t=a[a.size()-1]+a[a.size()-2];
+            a.push_back(t);
+            f+=t;
+            }
+           }
+        }
+        return f;
+    }
+    bool isnumber(string str){
+        int s=str[0]=='-'?1:0;
+        for(int i=s;i<str.size();i++){
+            if(!isdigit(str[i]))
+            return false;
+        }
+        return true;
+    }
+};
