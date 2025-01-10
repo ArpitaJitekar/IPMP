@@ -1,0 +1,27 @@
+//for last word if traiing space is not there it wont get pushedin stack using for loop so manually pushing is needed
+class Solution {
+public:
+    string reverseWords(string s) {
+        stack<string>st;
+        string a="";
+        for(char p:s){
+            if(p!=' ')
+                a+=p;
+            else if(!a.empty()){
+                st.push(a);
+                a="";
+            }
+        }
+        if(!a.empty())
+        st.push(a);
+        s="";
+        while(!st.empty()){
+            s=s+st.top();
+            st.pop();
+            if (!st.empty()) {
+            s += " "; 
+        }
+        }
+        return s;
+    }
+};
