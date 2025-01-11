@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        int count=0;
+        string p="";
+        for(auto c:s){
+            if(c=='(' && count++>0){
+           p+=c;
+            }
+            if(c==')' &&count-->1){
+                p+=c;
+            }
+        }
+        return p;
+    }
+};
