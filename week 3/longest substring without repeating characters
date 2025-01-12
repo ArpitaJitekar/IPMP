@@ -1,0 +1,24 @@
+//if s[r] is visited already remove substring until same character as s[r];
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.length()==0 || s.length()==1){
+            return s.length();
+        }
+        if(s.empty())
+        return 0;
+      int l=0,r=0,res=0;
+      vector<bool>vis(128,false);
+      while(r<s.length()){
+      
+        while(vis[s[r]]==true){
+            vis[s[l]]=false;
+            l++;
+        }
+        vis[s[r]]=true;
+        res=max(res,(r-l+1));
+        r++;
+      }
+      return res;
+      }
+};
