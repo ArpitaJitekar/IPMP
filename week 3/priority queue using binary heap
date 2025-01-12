@@ -1,0 +1,12 @@
+
+class Solution {
+  public:
+    int extractMax() {
+       
+        int p=H[0];
+        H[0]=H[s];
+        s=s-1;
+        shiftDown(0);
+        return p;
+    }
+};
