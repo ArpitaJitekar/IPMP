@@ -1,0 +1,21 @@
+//stack logic simil to dailystock problem
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        stack<int>p;
+        int n=temperatures.size();
+     
+        vector<int>a(n,0);
+       for(int i=n-1;i>=0;i--){
+        while(!p.empty() &&temperatures[p.top()]<=temperatures[i]){
+            p.pop();
+        }
+        if(!p.empty()){
+            a[i]=p.top()-i;
+        }
+        p.push(i);
+       }
+        
+        return a;
+    }
+};
