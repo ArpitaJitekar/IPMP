@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+       int i1=0,i2=0,i3=0;
+       int next,next1,next2,next3;
+       vector<int>a{1};
+       while(a.size()<n){
+        next1=2*a[i1];
+        next2=3*a[i2];
+        next3=5*a[i3];
+        next=min(next1,min(next2,next3));
+        a.push_back(next);
+        if(next==next1){
+            i1++;
+        }
+        if(next==next2){
+            i2++;
+        }
+        if(next==next3){
+            i3++;
+        }
+       }
+     return a.back();
+    }
+    
+};
