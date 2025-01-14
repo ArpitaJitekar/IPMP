@@ -1,0 +1,23 @@
+//the moment at which passeger becoe ,more than capacity it means intervals lies between them and total passengers are more than capacity so return false
+class Solution {
+public:
+    bool carPooling(vector<vector<int>>& trips, int capacity) {
+        vector<int>a(1001,0);
+        int t=0;
+        for(const auto trip:trips){
+            int pass=trip[0];
+            int s=trip[1];
+            int e=trip[2];
+            a[s]+=pass;
+            a[e]-=pass;
+        }
+        for(const auto p:a){
+            t+=p;
+            if(t>capacity)
+        return false;
+        }
+        
+        return true;
+
+    }
+};
