@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        if(n==0)
+        return tasks.size();
+          vector<int>a(26,0);
+        for(const auto p:tasks){
+            ++a[p-'A'];
+        }
+        int maxf=ranges::max(a);
+        int x=(maxf-1)*(n+1);
+        int y=ranges::count(a,maxf);
+        return max(x+y, static_cast<int>(tasks.size()));
+    }
+};
