@@ -1,0 +1,26 @@
+//here if sum drops to zero at any pointthen we have to star from i+1 (this is greedy approach to solve this)
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+       int s1=sum(gas);
+       int s2=sum(cost);
+       if(s1-s2<0)
+       return -1;
+       int ans=0,sum=0;
+       for(int i=0;i<gas.size();i++){
+        sum+=gas[i]-cost[i];
+        if(sum<0){
+            sum=0;
+            ans=i+1;
+        }
+       }
+    return ans;
+    }
+    int sum(vector<int>a){
+        int s=0;
+        for(const int p:a){
+            s+=p;
+        }
+        return s;
+    }
+};
