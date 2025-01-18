@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        string ans;
+       vector<string>p;
+        istringstream iss(path);
+        for(string dir;getline(iss,dir,'/');){
+            if(dir=="."||dir.empty())
+            continue;
+           if(dir==".."){
+            if(!p.empty()){
+                p.pop_back();
+            }}
+            else{
+                p.push_back(dir);
+            }
+         
+          
+        }
+        for(const string s:p)
+          ans+="/"+s;
+        ans=ans.empty()?"/":ans;
+          return ans;
+    }
+};
