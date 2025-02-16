@@ -1,0 +1,26 @@
+//in undirected graph we have tocheck whther visited vertex came again nd it's not parent of given vertex
+public:
+    // Function to detect cycle in an undirected graph.
+    bool isCycle(vector<vector<int>>& adj) {
+       vector<bool>visited(adj.size(),false);
+       for(int i=0;i<adj.size();i++){
+           if(!visited[i])
+           {
+               if(dfs(adj,visited,i,-1))
+               return true;
+           }
+       }
+       return false;
+    }
+    bool dfs(vector<vector<int>>& adj,vector<bool>&visited,int u,int parent){
+        visited[u]=true;
+        for(int i=0;i<adj[u].size();i++){
+            if(!visited[adj[u][i]]){
+              if(dfs(adj,visited,adj[u][i],u))
+              return true;
+            }
+            else if(adj[u][i]!=parent)
+            return true;
+        }
+        return false;
+    }
