@@ -1,0 +1,25 @@
+//sumof subaraays (not subset)
+ public:
+    int perfectSum(vector<int>& arr, int target) {
+       int count=0,sum=0;
+       helper(arr,target,&count,0,sum);
+       return count;
+    }
+    void helper(vector<int>&arr,int target,int *count,int i,int sum){
+        if(i==arr.size()){
+            return;
+        }
+        if(sum==target){
+            (*count)++;
+            sum=0;
+          helper(arr,target,count,i+1,sum+arr[i]);
+            
+        }
+        else if(sum>target){
+            sum=0;
+           helper(arr,target,count,i+1,sum+arr[i]);
+        }
+        else
+         helper(arr,target,count,i+1,sum+arr[i]);
+        
+    }
