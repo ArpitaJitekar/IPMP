@@ -1,0 +1,27 @@
+int dfs(int u,int color, int colors[],int **graph,int *graphColSize){
+    colors[u]=color;
+    for(int i=0;i<graphColSize[u];i++){
+        if(colors[graph[u][i]]==-1){
+            if(!dfs(graph[u][i],1-color,colors,graph,graphColSize))
+            return 0;
+        }else if(colors[graph[u][i]]==color){
+            return 0;
+        }
+    }
+    return 1;
+
+}
+
+bool isBipartite(int** graph, int graphSize, int* graphColSize) {
+    int colors[graphSize];
+    for(int i=0;i<graphSize;i++){
+        colors[i]=-1;
+    }
+    for(int i=0;i<graphSize;i++){
+        if(colors[i]==-1){
+            if(!dfs(i,0,colors,graph,graphColSize))
+            return false;
+        }
+    }
+    return true;
+}
