@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<string> generateParenthesis(int n) {
+        string b;
+        vector<string>a;
+        make(a,b,n,0,0);
+        return a;
+    }
+    void make(vector<string>&a,string b,int n,int openN,int closeN){
+        if(openN==n && closeN==n){
+            a.push_back(b);
+            return ;
+        }
+        if(openN<n){
+            b.push_back('(');
+            make(a,b,n,openN+1,closeN);
+            b.pop_back();
+        }
+        if(closeN<openN){
+             b.push_back(')');
+            make(a,b,n,openN,closeN+1);
+            b.pop_back();
+        }
+
+    }
+};
