@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        int f=0,r=0;
+        int row=grid.size();
+        int c=grid[0].size();
+        vector<int>d={-1,0,1,0,-1};
+        queue<pair<int,int>>q;
+      for(int i=0;i<row;i++)  {
+        for(int j=0;j<c;j++){
+            if(grid[i][j]==1)
+            f++;
+            if(grid[i][j]==2){
+                q.emplace(i,j);
+                r++;
+            }
+        }
+      }
+      if(f==0)
+      return 0;
+      int time=0;
+      while(!q.empty()){
+         int size = q.size();
+          bool rotted = false;
+        for(int i=1;i<=size;i++){
+        const auto [u,v]=q.front();
+        q.pop();
+        for(int p=0;p<4;p++){
+            int x=u+d[p],y=v+d[p+1];
+            if(x<0 || x>=row||y<0||y>=c)
+            continue;
+            if(grid[x][y]!=1)
+            continue;
+            grid[x][y]=2;
+            rotted=true;
+            f--;
+            q.emplace(x,y);
+
+        }
+        }
+        if(rotted)time++;
+
+      }
+     return (f == 0) ? time : -1;
+    }
+};
