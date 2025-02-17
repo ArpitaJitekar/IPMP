@@ -1,0 +1,42 @@
+//bfs traversal
+class Solution {
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        int r=mat.size();
+        int c=mat[0].size();
+        vector<int>d={-1,0,1,0,-1};
+        helper(mat,r,c,d);
+        return mat;
+    }
+    void helper(vector<vector<int>>& mat,int r,int c,vector<int>&d){
+        queue<pair<int,int>>q;
+        vector<vector<bool>>vis(r,vector<bool>(c));
+       for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(mat[i][j]==0){
+                q.emplace(i,j);
+                vis[i][j]=true;
+
+            }
+        }
+       }
+        while(!q.empty()){
+            const auto [u,v]=q.front();
+            q.pop();
+            for(int p=0;p<4;p++){
+                int x=u+d[p],y=v+d[p+1];
+                 if(x<0|| x>=r||y<0 ||y>=c)
+                 continue;
+                 if(vis[x][y]){
+                    continue;
+                 }
+                 mat[x][y]=mat[u][v]+1;
+                 q.emplace(x,y);
+                 vis[x][y]=true;
+                
+            }
+        }
+       
+
+    }
+};
