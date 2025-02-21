@@ -1,0 +1,82 @@
+//courses are dependent on each other so directed graph can lead to topological sort traversal but u have to consider situation where cycle might exists(not possible to schedule jobs)
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<vector<int>>adj(numCourses);
+        int x=prerequisites.size();
+         vector<int>ans;
+         vector<int> inDegree(numCourses, 0);
+        if(x==0){
+            for(int i=0;i<numCourses;i++){
+                ans.push_back(i);
+            }
+            return ans;
+        }
+        int k=prerequisites[0][1];
+        for(int i=0;i<x;i++){
+            adj[prerequisites[i][1]].push_back(prerequisites[i][0]);
+            inDegree[prerequisites[i][0]]++;
+        //    if(prerequisites[i][0]==k){
+        //     k=prerequisites[i][1];
+        //    }
+        }
+        if(iscycle(adj)){
+            return {};
+        }
+       
+        vector<bool>visited(numCourses,false);
+        bfs(adj,visited,ans,inDegree);
+
+        
+       return ans; 
+    }
+    void bfs(vector<vector<int>>&adj,vector<bool>&visited,vector<int>&ans,vector<int>&indegree){
+       queue<int>q;
+       for(int i=0;i<adj.size();i++){
+        if(indegree[i]==0){
+       q.push(i);
+         visited[i]=true;
+        }
+       }
+     
+    while(!q.empty()){
+        int v=q.front();
+        ans.push_back(v);
+        q.pop();
+         for(int i=0;i<adj[v].size();i++){
+                indegree[adj[v][i]]--;
+            }
+        for(int j=0;j<adj.size();j++){
+            if(!visited[j] && indegree[j]==0){
+                q.push(j);
+                visited[j]=true;
+            }
+        }
+    }
+        
+    }
+    bool iscycle(const vector<vector<int>>&adj){
+        vector<bool>visited(adj.size(),false);
+        vector<bool>rec(adj.size(),false);
+        for(int i=0;i<adj.size();i++){
+            if(!visited[i]){
+                if(dfs(adj,i,visited,rec))
+                return true;
+            }
+        }
+    return false;
+    }
+    bool dfs(const vector<vector<int>>&adj,int u,vector<bool>&visited,vector<bool>&rec){
+        visited[u]=true;
+        rec[u] = true; 
+        for(int i=0;i<adj[u].size();i++){
+            if(!visited[adj[u][i]] && dfs(adj,adj[u][i],visited,rec)){
+                return true;
+            }
+            else if(rec[adj[u][i]])
+            return true;
+        }
+        rec[u]=false;
+        return false;
+    }
+};
