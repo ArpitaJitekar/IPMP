@@ -1,0 +1,47 @@
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid) {
+        int r=grid.size();
+        int c=grid[0].size();
+        vector<int>directions={-1,0,1,0,-1};
+        vector<vector<bool>>visited(r,vector<bool>(c));
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(grid[i][j]=='0'){
+                    visited[i][j]=true;
+                }
+            }
+        }
+        int count=0;
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(!visited[i][j]){
+                    bfs(grid,visited,i,j,directions,r,c);
+                    count++;
+                }
+            }
+        }
+    return count;
+    }
+    void bfs(vector<vector<char>>&a,vector<vector<bool>>&visited,int i,int j,vector<int>&directions,int r,int c){
+        queue<pair<int,int>>q;
+        q.push({i,j});
+        visited[i][j]=true;
+        while(!q.empty()){
+            const auto [u,v]=q.front();
+            q.pop();
+            for(int k=0;k<4;k++){
+                int m=u+directions[k],n=v+directions[k+1];
+                if(m<0 ||m>=r|| n<0 ||n>=c){
+                    continue;
+                }
+                if(visited[m][n])
+                continue;
+                q.push({m,n});
+                visited[m][n]=true;
+
+            }
+
+        }
+    }
+};
