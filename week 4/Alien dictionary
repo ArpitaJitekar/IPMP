@@ -1,0 +1,16 @@
+//just change first charater in all word to a (put a in place of first on),second to b and so on and check whether they are sorted or  not
+class Solution {
+public:
+    bool isAlienSorted(vector<string>& words, string order) {
+        vector<char>map(26);
+        for(int i=0;i<26;i++){
+            map[order[i]-'a']=i+'a';
+        }
+        for(auto &word :words){
+            for(auto &ch:word){
+                ch=map[ch-'a'];
+            }
+        }
+        return is_sorted(words.begin(),words.end());
+    }
+};
