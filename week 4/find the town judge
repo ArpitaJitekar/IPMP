@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int findJudge(int n, vector<vector<int>>& trust) {
+        if(trust.size()<n-1){
+            return -1;
+        }
+        
+        vector<int>outdeg(n+1,0);
+        vector<int>indeg(n+1,0);
+        for( auto &t:trust){
+            int a=t[0],b=t[1];
+            outdeg[a]++;
+            indeg[b]++;
+        }
+        for(int i=1;i<=n;i++){
+            if(indeg[i]==n-1 && outdeg[i]==0){
+                return i;
+            }
+        }
+        return -1;
+    }
+};
