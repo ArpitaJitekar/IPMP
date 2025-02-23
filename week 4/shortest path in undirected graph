@@ -1,0 +1,27 @@
+public:
+    // Function to find the shortest path from source to all other nodes
+    vector<int> shortestPath(vector<vector<int>>& adj, int src) {
+     vector<int>ans(adj.size(),INT_MAX) ;
+        queue<int>q;
+        q.push(src);
+        vector<bool>visited(adj.size(),false);
+        ans[src]=0;
+        visited[src]=true;
+        while(!q.empty()){
+            int u=q.front();
+            q.pop();
+            for(int i=0;i<adj[u].size();i++){
+                if(!visited[adj[u][i]]){
+                    q.push(adj[u][i]);
+                    visited[adj[u][i]]=true;
+                    if(ans[adj[u][i]]>1+ans[u])
+                    ans[adj[u][i]]=1+ans[u];
+                }
+            }
+        }
+        for(int i=0;i<ans.size();i++){
+            if(ans[i]==INT_MAX)
+            ans[i]=-1;
+        }
+        return ans;
+    }
