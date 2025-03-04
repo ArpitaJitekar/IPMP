@@ -37,3 +37,40 @@ public:
 
 };
 //actual solution:
+class Solution {
+public:
+    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+       vector<pair<int, int>> d = {
+    {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, 
+    {1, 0}, {1, -1}, {0, -1}, {-1, -1}
+};
+        int r=grid.size();
+        vector<vector<int>>ans(r,vector<int>(r,INT_MAX));
+        if(grid[0][0]==1 || grid[r-1][r-1]==1){
+            return -1;
+        }
+        
+        ans[0][0]=1;
+    queue<pair<int,int>>q;
+    q.push(make_pair(0,0));
+    while(!q.empty()){
+        auto [x,y]=q.front();
+        q.pop();
+        for(int p=0;p<d.size();p++){
+            int m=x+d[p].first,n=y+d[p].second;
+            if(m<0 ||m >=r || n<0 ||n>=r){
+                continue;
+            }
+            if(grid[m][n]==0 && ans[m][n]>ans[x][y]+1){
+                ans[m][n]=ans[x][y]+1;
+                q.push({m,n});
+            }
+        }
+    }
+   if(ans[r-1][r-1]==INT_MAX){
+    return -1;
+   }
+    return ans[r-1][r-1];
+    }
+
+};
