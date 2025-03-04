@@ -1,0 +1,39 @@
+//this solution gave TLE
+public:
+    int shortestPathBinaryMatrix(vector<vector<int>>& grid) {
+       vector<pair<int, int>> d = {
+    {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, 
+    {1, 0}, {1, -1}, {0, -1}, {-1, -1}
+};
+        int r=grid.size();
+        vector<vector<int>>ans(r,vector<int>(r,INT_MAX));
+        if(grid[0][0]==1 || grid[r-1][r-1]==1){
+            return -1;
+        }
+        
+        ans[0][0]=1;
+    priority_queue<pair<int,pair<int,int>>>q;
+    q.push(make_pair(0,make_pair(0,0)));
+    while(!q.empty()){
+        auto [x,y]=q.top();
+        q.pop();
+        int i1=y.first,j1=y.second;
+        for(int p=0;p<d.size();p++){
+            int m=i1+d[p].first,n=j1+d[p].second;
+            if(m<0 ||m >=r || n<0 ||n>=r){
+                continue;
+            }
+            if(grid[m][n]==0 && ans[m][n]>ans[i1][j1]+1){
+                ans[m][n]=ans[i1][j1]+1;
+                q.push({ans[m][n],{m,n}});
+            }
+        }
+    }
+   if(ans[r-1][r-1]==INT_MAX){
+    return -1;
+   }
+    return ans[r-1][r-1];
+    }
+
+};
+//actual solution:
